@@ -1,0 +1,32 @@
+/* 
+    Filename: CalendarTheme.css
+    Created on : Mar 22, 2023, 11:55:58 AM
+    Author     : fberkovi
+    File Purpose: CSS for Calendar Project
+*/
+header {    
+    
+}
+
+body {
+    background-color: lightblue;
+    /*opacity:0.5; */
+    font-family: "Lucida Console", "Courier New", monospace;
+    
+}
+
+.p {
+  font-family: "Lucida Console", "Courier New", monospace;      
+}
+
+.p1 {
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.p2 {
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.p3 {
+  font-family: "Lucida Console", "Courier New", monospace;
+} 
