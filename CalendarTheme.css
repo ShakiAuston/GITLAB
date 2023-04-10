@@ -4,29 +4,10 @@
     Author     : fberkovi
     File Purpose: CSS for Calendar Project
 */
-header {    
-    
-}
 
 body {
     background-color: lightblue;
     /*opacity:0.5; */
-    font-family: "Lucida Console", "Courier New", monospace;
-    
+    font-family: Arial, Times, serif;
 }
 
-.p {
-  font-family: "Lucida Console", "Courier New", monospace;      
-}
-
-.p1 {
-  font-family: "Lucida Console", "Courier New", monospace;
-}
-
-.p2 {
-  font-family: "Lucida Console", "Courier New", monospace;
-}
-
-.p3 {
-  font-family: "Lucida Console", "Courier New", monospace;
-} 

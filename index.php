@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">    
+<html lang="en">
     <head>
         <title>Web Calendar</title>
         <meta charset="utf-8">
@@ -7,16 +7,33 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
-    
     <body>
-        <?php include 'header.php'; ?>
-        <h3>Calendar</h3>
-        <p>Welcome to the web calendar</p>
-       
-   
+
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="javascript:void(0)"><img src="./img/logo.png" width="50" height="50" title="Logo" alt="Logo" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="user.php">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="public.php">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid mt-3">
+            <h3>Calendar</h3>
+            <p>Welcome to the web calendar</p>
+        </div>
 
     </body>
-    
 </html>
 
 
