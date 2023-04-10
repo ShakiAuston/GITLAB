@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2023 at 04:30 PM
+-- Generation Time: Apr 10, 2023 at 05:44 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -72,12 +72,17 @@ CREATE TABLE `event` (
 CREATE TABLE `register` (
   `RegisterID` int(5) NOT NULL,
   `Username` varchar(25) NOT NULL,
-  `Email` varchar(48) NOT NULL,
   `Password` varchar(25) NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
   `Address` varchar(25) NOT NULL,
-  `State` varchar(25) NOT NULL
+  `City` varchar(25) NOT NULL,
+  `state` varchar(25) NOT NULL,
+  `zip` int(5) NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `phone` varchar(25) NOT NULL,
+  `SecurityQ` varchar(45) NOT NULL,
+  `SecurityA` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
