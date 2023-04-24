@@ -27,13 +27,14 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `calendar`
 -- naming convention is eg. word_word
+-- updated on 04/24/2023 at 1:00 am EST
 
 CREATE TABLE `calendar` (
   `calendar_ID` int(50) NOT NULL,
   `calendar_name` varchar(25) NOT NULL,
   `date_created` DATE NOT NULL,
-  `date_current` varchar(9) NOT NULL,
-  --`editor_ID` int(50) NOT NULL,        -- calendar can have multiple editors
+  `date_current` DATE NOT NULL,
+  `owner_ID` int(50) NOT NULL,
   `event_ID` int(50) NOT NULL,
   `registration_ID` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,10 +43,12 @@ CREATE TABLE `calendar` (
 
 --
 -- Table structure for table `editors`
---
+-- Since an editor is a user with permission to edit something, whether it's an event or a calendar
+-- An editor belongs to an event or a calendar, but an event or a calendar may have many editors
 
 CREATE TABLE `editor` (
   `editor_ID` int(50) NOT NULL,
+  `user_ID` int(50) NOT NULL,
   `event_ID` int(50) NOT NULL,
   `calendar_ID` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -61,17 +64,14 @@ CREATE TABLE `editor` (
 CREATE TABLE `event` (
   `event_ID` int(5) NOT NULL,
   `event_name` varchar(25) NOT NULL,
-  `date_created` varchar(9) NOT NULL,
-  `date_scheduled` varchar(9) NOT NULL,
+  `date_created` DATE NOT NULL,
+  `date_scheduled` DATE NOT NULL,
   `duration` int(5) DEFAULT 1,
   `description` varchar(2048) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
-
 --
--- calendar has an owner
+-- calendar has one owner
 --
 
 --
@@ -79,35 +79,24 @@ CREATE TABLE `event` (
 --
 ALTER TABLE `calendar`
   ADD PRIMARY KEY (`calendar_ID`),
-  -- ADD KEY `event_ID` (`event_ID`,`register_ID`), -- calendar can have more than 1 event BUGFIXING REQUIRED
-  ADD KEY `registration_ID` (`registration_ID`),
   ADD KEY `owner_ID` (`owner_ID`),
-  ADD KEY `editor_ID` (`editor_ID`);
 
 --
 -- Indexes for table `editors`
 --
 ALTER TABLE `editor`
   ADD PRIMARY KEY (`editor_ID`),
+  ADD KEY `owner_ID` (`owner_ID`),
   ADD KEY `event_ID` (`event_ID`);
 
 --
 -- An event has a primary key which is event_ID
--- An event also has a foreign key which is 
+-- An event also has a foreign key which is the calendar that the event belongs to, and that calendar table has a user ID
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`event_ID`);
-  ADD KEY ( `owner_ID`);
+  ADD KEY ( `calendar_ID`);
   
---
--- Indexes for table `register`
---
-ALTER TABLE `registration`
-  ADD PRIMARY KEY (`registration_ID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
 
 --
 -- AUTO_INCREMENT for table `calendar`
@@ -116,39 +105,29 @@ ALTER TABLE `calendar`
   MODIFY `calendar_ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `editors`
+-- AUTO_INCREMENT for table `editor`
 --
 ALTER TABLE `editor`
   MODIFY `editor_ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `event`
+-- AUTO_INCREMENT for table `event` BUT WHY?
 --
 ALTER TABLE `event`
   MODIFY `event_ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `register`
---
-ALTER TABLE `registration`
-  MODIFY `registration_ID` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
 -- Sets Constraints for table `calendar`
--- 
+-- set up foreign keys here(?), in other words
+-- TODO create association table between owners and calendars (many-to-many)
+-- .. or decide on one-one relationship for owner and calendar
 ALTER TABLE `calendar`
-  ADD CONSTRAINT `calendar_ibfk_1` FOREIGN KEY (`event_ID`) REFERENCES `event` (`event_ID`),
-  ADD CONSTRAINT `calendar_ibfk_2` FOREIGN KEY (`registration_ID`) REFERENCES `registration` (`registration_ID`),
-  ADD CONSTRAINT `calendar_ibfk_3` FOREIGN KEY (`editor_ID`) REFERENCES `editors` (`editor_ID`);
+  ADD CONSTRAINT `calendar_ibfk_1` FOREIGN KEY (`owner_ID`) REFERENCES `user` (`user_ID`);
 
 --
 -- Constraints for table `editors`
 --
-ALTER TABLE `editors`
+ALTER TABLE `editor`
   ADD CONSTRAINT `editors_ibfk_1` FOREIGN KEY (`event_ID`) REFERENCES `event` (`event_ID`);
 COMMIT;
 
