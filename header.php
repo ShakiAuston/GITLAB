@@ -20,7 +20,7 @@
                         <a class="nav-link" href="user.php">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="public.php">Register</a>
+                        <a class="nav-link" href="signup.php">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="user_profile.php">My Profile</a>
