@@ -24,4 +24,6 @@ $sql = "insert into users values (0, '" . $uname . "', '" . $pswd . "', '" .
   $addr2 . "', '" . $email . "', '" . $phone . "', '" . $question . "', '" . 
   $answer . "', '" . $verified . "' '" . $usertype . "')";
 echo modifyDB($sql) . "<br>Use back button to return";
+ header("Location:index.php");
+    exit;
 ?>
