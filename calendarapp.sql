@@ -46,7 +46,8 @@ CREATE TABLE `calendar` (
 
 CREATE TABLE `editor` (
   `editor_ID` int(50) NOT NULL,
-  `event_ID` int(50) NOT NULL
+  `event_ID` int(50) NOT NULL,
+  `calendar_ID` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -78,7 +79,7 @@ CREATE TABLE `event` (
 --
 ALTER TABLE `calendar`
   ADD PRIMARY KEY (`calendar_ID`),
-  -- ADD KEY `event_ID` (`event_ID`,`register_ID`),
+  -- ADD KEY `event_ID` (`event_ID`,`register_ID`), -- calendar can have more than 1 event BUGFIXING REQUIRED
   ADD KEY `registration_ID` (`registration_ID`),
   ADD KEY `owner_ID` (`owner_ID`),
   ADD KEY `editor_ID` (`editor_ID`);
