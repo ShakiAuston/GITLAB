@@ -3,6 +3,7 @@
 require "DBConnect.php";
 
 // collect form data
+// WARNING: if functionality breaks, try changing $_POST to $_GET
 $uname = $_POST["uname"];
 $pswd = $_POST["pswd"];
 $fname = $_GET["fname"];
