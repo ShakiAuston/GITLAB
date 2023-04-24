@@ -12,6 +12,7 @@ CREATE TABLE `user` (
   `user_ID` int(50) NOT NULL,  -- primary key
   `username_hash` varchar(250) NOT NULL,
   `password_hash` varchar(250) NOT NULL,    -- need serverside JS to convert plaintext to hash before saving in database
+  `salt` varchar(25) NOT NULL,              -- security salt stored in plaintext
   `first_name` varchar(30) NOT NULL,        -- alphabetic only
   `last_name` varchar(30) NOT NULL,         -- alphabetic only
   `address` varchar(25) NOT NULL,           -- alphanumeric
@@ -21,7 +22,7 @@ CREATE TABLE `user` (
   `email` varchar(25) NOT NULL,             -- alphanumeric with @ between
   `phone` varchar(25) NOT NULL,             -- numeric with forced 10 digits
   `security_Q` varchar(45) NOT NULL,        -- alphanumeric only; stored in plaintext
-  `security_answer_hash` varchar(250) NOT NULL
+  `security_answer_hash` varchar(250) NOT NULL,
   
  -- primary key constraints 
  CONSTRAINT pk_user PRIMARY KEY (`user_ID`),
