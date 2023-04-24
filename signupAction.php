@@ -3,8 +3,8 @@
 require "DBConnect.php";
 
 // collect form data
-$uname = $_GET["uname"];
-$pswd = $_GET["pswd"];
+$uname = $_POST["uname"];
+$pswd = $_POST["pswd"];
 $fname = $_GET["fname"];
 $lname = $_GET["lname"];
 $addr = $_GET["addr"];
@@ -23,5 +23,13 @@ $sql = "insert into users values (0, '" . $uname . "', '" . $pswd . "', '" .
   $fname . "', '" . $lname . "', '" . $addr . "', '" . $addr2 . "', '" . 
   $addr2 . "', '" . $email . "', '" . $phone . "', '" . $question . "', '" . 
   $answer . "', '" . $verified . "' '" . $usertype . "')";
-echo modifyDB($sql) . "<br>Use back button to return";
+// echo modifyDB($sql) . "<br>Use back button to return"; // professor's code
+
+if (modifyDB($sql)) {
+  echo "Database successfully updated! You will be redirected in 2 seconds";
+  header("Location: index.php");
+} else {
+  echo "Error: " . modifyDBError();
+}
 ?>
+
