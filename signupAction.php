@@ -25,6 +25,7 @@ $sql = "insert into users values (0, '" . $uname . "', '" . $pswd . "', '" .
   $answer . "', '" . $verified . "' '" . $usertype . "')";
 // echo modifyDB($sql) . "<br>Use back button to return"; // professor's code
 
+// returns user to index page upon successful database update
 if (modifyDB($sql)) {
   echo "Database successfully updated! You will be redirected in 2 seconds";
   header("Location: index.php");
