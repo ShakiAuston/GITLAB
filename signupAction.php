@@ -29,6 +29,7 @@ $sql = "insert into user values (0, '" . $uname . "', '" . $pswd . "', '" .
 // returns user to index page upon successful database update
 if (modifyDB($sql)) {
   echo "Database successfully updated! You will be redirected in 2 seconds";
+  sleep(2);
   header("Location: index.php");
 } else {
   echo "Error: " . modifyDBError();
