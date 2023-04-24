@@ -26,16 +26,16 @@ SET time_zone = "+00:00";
 
 --
 -- Table structure for table `calendar`
---
+-- naming convention is eg. word_word
 
 CREATE TABLE `calendar` (
-  `CalendarID` int(5) NOT NULL,
-  `Calander name` varchar(25) NOT NULL,
-  `date_created` varchar(9) NOT NULL,
+  `calendar_ID` int(50) NOT NULL,
+  `calendar_name` varchar(25) NOT NULL,
+  `date_created` DATE NOT NULL,
   `date_current` varchar(9) NOT NULL,
-  `editorID` int(5) NOT NULL,
-  `EventID` int(5) NOT NULL,
-  `RegisterID` int(5) NOT NULL
+  --`editor_ID` int(50) NOT NULL,        -- calendar can have multiple editors
+  `event_ID` int(50) NOT NULL,
+  `registration_ID` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -44,9 +44,9 @@ CREATE TABLE `calendar` (
 -- Table structure for table `editors`
 --
 
-CREATE TABLE `editors` (
-  `editorID` int(5) NOT NULL,
-  `EventID` int(5) NOT NULL
+CREATE TABLE `editor` (
+  `editor_ID` int(50) NOT NULL,
+  `event_ID` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -54,63 +54,55 @@ CREATE TABLE `editors` (
 --
 -- Table structure for table `event`
 --
+-- CHANGES MADE 04_23_2023
+-- duration is in days, it is not a required parameter and defaults to 1
 
 CREATE TABLE `event` (
-  `EventID` int(5) NOT NULL,
-  `EventName` varchar(25) NOT NULL,
-  `DateCreated` varchar(9) NOT NULL,
-  `DateScheduled` varchar(9) NOT NULL,
-  `Description` varchar(2048) NOT NULL
+  `event_ID` int(5) NOT NULL,
+  `event_name` varchar(25) NOT NULL,
+  `date_created` varchar(9) NOT NULL,
+  `date_scheduled` varchar(9) NOT NULL,
+  `duration` int(5) DEFAULT 1,
+  `description` varchar(2048) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `register`
---
-
-CREATE TABLE `register` (
-  `RegisterID` int(5) NOT NULL,
-  `Username` varchar(25) NOT NULL,
-  `Email` varchar(48) NOT NULL,
-  `Password` varchar(25) NOT NULL,
-  `firstname` varchar(30) NOT NULL,
-  `lastname` varchar(30) NOT NULL,
-  `Address` varchar(25) NOT NULL,
-  `State` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- calendar has an owner
 --
 
 --
 -- Indexes for table `calendar`
 --
 ALTER TABLE `calendar`
-  ADD PRIMARY KEY (`CalendarID`),
-  ADD KEY `EventID` (`EventID`,`RegisterID`),
-  ADD KEY `RegisterID` (`RegisterID`),
-  ADD KEY `editorID` (`editorID`);
+  ADD PRIMARY KEY (`calendar_ID`),
+  -- ADD KEY `event_ID` (`event_ID`,`register_ID`),
+  ADD KEY `registration_ID` (`registration_ID`),
+  ADD KEY `owner_ID` (`owner_ID`),
+  ADD KEY `editor_ID` (`editor_ID`);
 
 --
 -- Indexes for table `editors`
 --
-ALTER TABLE `editors`
-  ADD PRIMARY KEY (`editorID`),
-  ADD KEY `EventID` (`EventID`);
+ALTER TABLE `editor`
+  ADD PRIMARY KEY (`editor_ID`),
+  ADD KEY `event_ID` (`event_ID`);
 
 --
--- Indexes for table `event`
+-- An event has a primary key which is event_ID
+-- An event also has a foreign key which is 
 --
 ALTER TABLE `event`
-  ADD PRIMARY KEY (`EventID`);
-
+  ADD PRIMARY KEY (`event_ID`);
+  ADD KEY ( `owner_ID`);
+  
 --
 -- Indexes for table `register`
 --
-ALTER TABLE `register`
-  ADD PRIMARY KEY (`RegisterID`);
+ALTER TABLE `registration`
+  ADD PRIMARY KEY (`registration_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -120,43 +112,43 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `CalendarID` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `calendar_ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `editors`
 --
-ALTER TABLE `editors`
-  MODIFY `editorID` int(5) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `editor`
+  MODIFY `editor_ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `EventID` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `register`
 --
-ALTER TABLE `register`
-  MODIFY `RegisterID` int(5) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `registration`
+  MODIFY `registration_ID` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `calendar`
---
+-- Sets Constraints for table `calendar`
+-- 
 ALTER TABLE `calendar`
-  ADD CONSTRAINT `calendar_ibfk_1` FOREIGN KEY (`EventID`) REFERENCES `event` (`EventID`),
-  ADD CONSTRAINT `calendar_ibfk_2` FOREIGN KEY (`RegisterID`) REFERENCES `register` (`RegisterID`),
-  ADD CONSTRAINT `calendar_ibfk_3` FOREIGN KEY (`editorID`) REFERENCES `editors` (`editorID`);
+  ADD CONSTRAINT `calendar_ibfk_1` FOREIGN KEY (`event_ID`) REFERENCES `event` (`event_ID`),
+  ADD CONSTRAINT `calendar_ibfk_2` FOREIGN KEY (`registration_ID`) REFERENCES `registration` (`registration_ID`),
+  ADD CONSTRAINT `calendar_ibfk_3` FOREIGN KEY (`editor_ID`) REFERENCES `editors` (`editor_ID`);
 
 --
 -- Constraints for table `editors`
 --
 ALTER TABLE `editors`
-  ADD CONSTRAINT `editors_ibfk_1` FOREIGN KEY (`EventID`) REFERENCES `event` (`EventID`);
+  ADD CONSTRAINT `editors_ibfk_1` FOREIGN KEY (`event_ID`) REFERENCES `event` (`event_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
