@@ -20,7 +20,7 @@ $addr2 = $city . ", " . $state . " " . $zip;
 $verified = 0;
 $usertype = 3;
 
-$sql = "insert into users values (0, '" . $uname . "', '" . $pswd . "', '" .
+$sql = "insert into user values (0, '" . $uname . "', '" . $pswd . "', '" .
   $fname . "', '" . $lname . "', '" . $addr . "', '" . $addr2 . "', '" . 
   $addr2 . "', '" . $email . "', '" . $phone . "', '" . $question . "', '" . 
   $answer . "', '" . $verified . "' '" . $usertype . "')";
