@@ -8,5 +8,6 @@
 <?php include 'header.php'; ?>
     <h1>Shared Calendars</h1>
     <h1>User must be logged in to access this page</h1>
+    // TODO show the ID's and names calendar objects that the user owns here
 </body>
 </html>
