@@ -1,5 +1,10 @@
 <head>
     <link rel="stylesheet" href="CalendarTheme.css">
+    <script>
+        var hasJS = ('querySelector' in document && 'addEventListener' in window);
+        if (!hasJS) {window.location.href = 'nojs.php';} // Redirect to a JavaScript-disabled version of the page
+</script>
+
 </head>
 
 <body>
