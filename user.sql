@@ -12,7 +12,7 @@ CREATE TABLE `user` (
   `user_ID` int(50) NOT NULL,  -- primary key
   `username_hash` varchar(250) NOT NULL,
   `password_hash` varchar(250) NOT NULL,    -- need serverside JS to convert plaintext to hash before saving in database
-  `salt` varchar(25) NOT NULL,              -- security salt stored in plaintext
+  `salt` varchar(25) NOT NULL,              -- security salt stored in plaintext; salt gets generated upon user being created with signupAction.php
   `first_name` varchar(30) NOT NULL,        -- alphabetic only
   `last_name` varchar(30) NOT NULL,         -- alphabetic only
   `address` varchar(25) NOT NULL,           -- alphanumeric
@@ -52,6 +52,8 @@ CREATE TABLE `user` (
   -- constrains security question to be alphanumeric
   CONSTRAINT chk_security_question_alpha_num CHECK (security_Q REGEXP '^[A-Za-z0-9]+$')
  
+  
+  -- TODO check each column for malicious injections
   
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
 -- --------------------------------------------------------
