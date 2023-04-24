@@ -3,11 +3,10 @@
     Created on : Mar 22, 2023, 11:55:58 AM
     Author     : fberkovi
     File Purpose: CSS for Calendar Project
+    Last edited: 04/24/2023
 */
 
 body {
-    background-color: lightblue;
-    /*opacity:0.5; */
+    background-color: #23ff00;
     font-family: Arial, Times, serif;
 }
-

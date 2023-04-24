@@ -11,25 +11,30 @@ function openDB() {
 
     
     $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error)
+    if ($conn->connect_error){
         return $conn->connect_error;
-    else
+    }
+    else {
         return "Connected";
+    }
 }
 
 function closeDB() {
     global $conn;
+    return;
 }
 
 function modifyDB($sql) {
     global $conn;
     $message = openDB();
     if ($message == "Connected") {
-        if ($conn->query($sql) === TRUE)
-            $message = "Update Successful";
-        else
+        if ($conn->query($sql) === TRUE){
+            $message = "Update Successful";                        
+        }
+        else{
             $message = $conn->error;
-        closeDB();
+            closeDB();
+        }
     }
     return $message . "<br>";
 }
@@ -39,14 +44,13 @@ function queryDB($sql) {
     $message = openDB();
     if ($message == "Connected") {
         $result = $conn->query($sql);
-        if (gettype($result) == "object")
+        if (gettype($result) == "object"){
             $message = $result;
-        else
+        }
+        else {
             $message = $conn->error . "<br>Your SQL:" . $sql;
         closeDB();
+        }
     }
     return $message;
 }
-
-
-?>

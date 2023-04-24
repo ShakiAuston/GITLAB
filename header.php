@@ -1,12 +1,7 @@
 <head>
     <link rel="stylesheet" href="CalendarTheme.css">
-    <script>
-        var hasJS = ('querySelector' in document && 'addEventListener' in window);
-        if (!hasJS) {window.location.href = 'nojs.php';} // Redirect to a JavaScript-disabled version of the page
-</script>
 
 </head>
-
 <body>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
@@ -17,7 +12,7 @@
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="user.php">Login</a>
+                        <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="signup.php">Register</a>
@@ -29,4 +24,7 @@
             </div>
         </div>
     </nav>
+    <noscript>
+    <meta http-equiv="refresh" content="0;url=noJS.html">
+    </noscript>
 </body>
