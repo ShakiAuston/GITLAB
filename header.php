@@ -17,6 +17,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="public.php">Register</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user_profile.php">My Profile</a>
+                    </li>
                 </ul>
             </div>
         </div>
