@@ -3,7 +3,8 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
--- TODO: sanitize input
+-- TODO: sanitize input from SQL injection
+-- regex hints
 -- alphabetic regex: REGEXP '^[A-Za-z]+$'
 -- alphanumeric regex: REGEXP '^[A-Za-z0-9]+$'
 -- numeric only: '^[0-9]$'
