@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Bootstrap</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -9,34 +9,11 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mynavbar">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="public.php">public</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="user.php">User</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="admin.php">admin</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="Search">
-        <button class="btn btn-primary" type="button">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+<?php include 'header.php'; ?>
+  
 <div class="container w-75 mt-3">
   <h3>Sign Up Form to join the website</h3>
-  <p>Please complete and submit the form below</p>
+  <p>Please complete the form:</p>
 
   <form name="signup" action="signupAction.php" class="was-validated">
     <div class="mb-3 mt-3">
@@ -87,37 +64,37 @@
         <option value="NY">New York</option>
       </select>
       <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
+      <div class="invalid-feedback">Please enter a valid state.</div>
     </div>
       <div class="mb-3">
       <label for="addr" class="form-label">Zip:</label>
-      <input class="form-control" placeholder="Street address" name="zip" required>
+      <input class="form-control" placeholder="zip" name="zip" required>
       <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
+      <div class="invalid-feedback">Please enter a valid ZIP.</div>
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email:</label>
-      <input class="form-control" placeholder="Email address" name="email" required>
+      <input class="form-control" placeholder="email" name="email" required>
       <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
+      <div class="invalid-feedback">Please enter a valid email.</div>
     </div>
       <div class="mb-3">
       <label for="addr" class="form-label">phone:</label>
-      <input class="form-control" placeholder="Street address" name="phone" required>
+      <input class="form-control" placeholder="phone" name="phone" required>
       <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
+      <div class="invalid-feedback">Please enter a valid 10 digit phone number.</div>
     </div>
       <div class="mb-3">
       <label for="addr" class="form-label">Security Question:</label>
       <input class="form-control" placeholder="Street address" name="question" required>
       <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
+      <div class="invalid-feedback">Please enter a security question.</div>
     </div>
       <div class="mb-3">
       <label for="addr" class="form-label">Security Answer</label>
       <input class="form-control" placeholder="Street address" name="answer" required>
       <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
+      <div class="invalid-feedback">Please specify an answer.</div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
