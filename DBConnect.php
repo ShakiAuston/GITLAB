@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "mahadev";
 $password = "mahadev";
-$dbname = "calendarapp";
+$dbname = "calendardb";
 $conn;
 
 function openDB() {
